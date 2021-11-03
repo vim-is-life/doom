@@ -117,7 +117,10 @@
         send-mail-function #'smtpmail-send-it
         message-sendmail-f-is-evil t
         message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail))
+        message-send-mail-function #'message-send-mail-with-sendmail
+        mu4e-maildir       "~/Maildir"))   ;; top-level Maildir
+
+
 
 (set-email-account! "school-gmail"
   '((mu4e-sent-folder       . "/school-gmail/[Gmail].Sent Mail")
