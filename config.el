@@ -147,3 +147,6 @@
 
 ;; elfeed
 (add-hook! 'elfeed-search-mode-hook 'elfeed-update)
+
+;; vterm
+(setq vterm-shell "/usr/bin/zsh")
