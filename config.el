@@ -144,3 +144,6 @@
 ;; fix "No such file or directory, mu4e"
 ;; if you installed it using your package manager
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
+;; elfeed
+(add-hook! 'elfeed-search-mode-hook 'elfeed-update)
