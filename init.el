@@ -162,8 +162,8 @@
         +pandoc          ; the swiss army chainsaw converter
         +pomodoro        ; productivity!
         +present         ; show off your org mode
-        +pretty          ; make org mode easier on the eyes
-        ;; +roam2)          ; knowledge base with org mode
+        +pretty )         ; make org mode easier on the eyes
+        ;; +roam2          ; knowledge base with org mode
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
