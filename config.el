@@ -151,4 +151,12 @@
 ;; vterm
 (setq vterm-shell "/usr/bin/zsh")
 
+;; docview settings
 (setq! '(doc-view-continuous t))
+
+;; org-journal settings
+(setq org-journal-dir "~/org/journal/"
+      org-journal-date-format "%A, %d %B %Y"
+      org-journal-enable-agenda-integration t
+      org-journal-enable-encryption t
+      org-journal-encrypt-journal t)
