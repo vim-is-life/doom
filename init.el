@@ -79,7 +79,7 @@
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       (syntax +childframe)              ; tasing you for every semicolon you forget
+       (syntax +childframe)          ; tasing you for every semicolon you forget
        (spell +everywhere +flyspell) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 
@@ -90,10 +90,13 @@
        ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
-       (eval +overlay)     ; run code, run (also, repls)
-       ;;gist              ; interacting with github gists
-       (lookup +docsets +dictionary +offline)              ; navigate your code and its documentation
-       (lsp +peek)               ; M-x vscode
+       (eval +overlay)   ; run code, run (also, repls)
+       ;;gist            ; interacting with github gists
+       (lookup           ; navigate your code and its documentation
+        +docsets         ; dash docsets
+        +dictionary      ; lookup words
+        +offline)        ; work without internet
+       (lsp +peek)       ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -135,12 +138,15 @@
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       ;;json              ; At least it ain't XML
-       (java +lsp) ; the poster child for carpal tunnel syndrome
+       json              ; At least it ain't XML
+       (java +lsp)       ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        (julia +lsp)             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       (latex +latexmk +cdlatex +lsp)             ; writing papers in Emacs has never been so fun
+       (latex            ; writing papers in Emacs has never been so fun
+        +latexmk         ; automate latex process
+        +cdlatex         ; math symbol insertion and the like made easier
+        +lsp)            ; nicities
        ;;lean              ; for folks with too much to prove
        ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
@@ -148,11 +154,22 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +dragndrop +pandoc +present +pretty)               ; organize your plain life in plain text
+       (org              ; organize your plain life in plain text
+        +dragndrop       ; drag and drop images/files to insert links
+        +gnuplot         ; plot with gnuplot, why don't ya
+        +journal         ; journal in emacs with org
+        +jupyter         ; jupyter source code blocks
+        +pandoc          ; the swiss army chainsaw converter
+        +pomodoro        ; productivity!
+        +present         ; show off your org mode
+        +pretty          ; make org mode easier on the eyes
+        ;; +roam2)          ; knowledge base with org mode
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python +lsp +conda)            ; beautiful is better than ugly
+       (python           ; beautiful is better than ugly
+        +lsp             ; nicities
+        +conda)          ; virtual environment support and stuff
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -162,13 +179,13 @@
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
-       (sh +lsp)                ; she sells {ba,z,fi}sh shells on the C xor
+       (sh +lsp)         ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       ;; web               ; the tubes
-       ;;yaml              ; JSON, but readable
+       web               ; the tubes
+       yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email

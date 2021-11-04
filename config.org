@@ -1,0 +1,54 @@
+#+TITLE: Config
+#+STARTUP: fold
+
+Tentative beginnings of a literate config
+
+* RSS
+RSS reader with emacs.
+The below will setup the feeds that I follow.
+
+#+begin_src org :tangle ~/org/elfeed.org
+,#+TITLE: Elfeed RSS Listing
+
+,* root :elfeed:
+,** Reddit :reddit:
+,*** [[https://www.reddit.com/r/linux.rss][Reddit Linux]] :linux:
+,*** [[https://www.reddit.com/r/commandline.rss][Reddit Commandline]]
+,*** [[https://www.reddit.com/r/distrotube.rss][Reddit DistroTube]]
+,*** [[https://www.reddit.com/r/emacs.rss][Reddit Emacs]] :emacs:
+,** Privacy :privacy:
+,*** [[view-source:https://restoreprivacy.com/feed/][Restore Privacy]] :news:
+,*** [[https://www.eff.org/rss/updates.xml][EFF Updates]] :eff:
+,*** [[view-source:https://theshiftedlibrarian.com/feed][The Shifted Librarian]]
+,** Programming :programming:
+,*** Python :python:
+,**** [[https://realpython.com/atom.xml?format=xml][Real Python]]
+,**** [[http://pyfound.blogspot.com/atom.xml][Python Software Foundation]]
+,*** Julia :julia:
+,**** [[https://julialang.org/feed.xml][The Julia Blog]]
+,** Linux :linux:software:
+,*** [[https://archlinux.org/feeds/news/][Arch Linux News]] :archlinux:
+,*** [[https://www.cyberciti.biz/feed/][nixCraft - Linux Tips, Hacks, and Tutorials]] :tutorials:
+,*** [[https://itsfoss.com/feed/][It's F.O.S.S. Blog]] :free_open_source:
+,*** [[http://www.linuxjournal.com/node/feed][The Linux Journal]]
+,*** [[https://www.gamingonlinux.com/article_rss.php][Gaming Linux]]
+,*** [[https://hackaday.com/blog/feed/][Hackaday Linux]]
+,*** [[https://opensource.com/feed][Opensource Linux]]
+,*** [[https://linux.softpedia.com/backend.xml][Softpedia Linux]]
+,*** [[https://itsfoss.com/feed/][Itsfoss Linux]]
+,*** [[https://www.zdnet.com/topic/linux/rss.xml][Zdnet Linux]]
+,*** [[https://www.phoronix.com/rss.php][Phoronix Linux]]
+,*** [[http://feeds.feedburner.com/d0od][Omgubuntu Linux]]
+,*** [[https://www.computerworld.com/index.rss][Computerworld Linux]]
+,*** [[https://www.networkworld.com/category/linux/index.rss][Networkworld Linux]]
+,*** [[https://www.techrepublic.com/rssfeeds/topic/open-source/][Techrepublic Linux]]
+,*** [[https://betanews.com/feed][Betanews Linux]]
+,*** [[http://lxer.com/module/newswire/headlines.rss][Lxer Linux]]
+,*** [[https://distrowatch.com/news/dwd.xml][DistroWatch Linux]]
+,** News :news:
+,*** [[https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml][The NY Times]]
+,*** [[http://www.aljazeera.com/xml/rss/all.xml][Al Jazeera]]
+,*** [[https://www.vox.com/rss/world/index.xml][Vox World]]
+,*** [[https://feeds.npr.org/1001/rss.xml][NPR News]] :npr:
+,*** [[https://feeds.npr.org/3/rss.xml][NPR Morning Edition]] :npr:
+#+end_src

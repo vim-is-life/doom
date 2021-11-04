@@ -150,3 +150,5 @@
 
 ;; vterm
 (setq vterm-shell "/usr/bin/zsh")
+
+(setq! '(doc-view-continuous t))
