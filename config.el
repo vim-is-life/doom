@@ -35,7 +35,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -152,11 +152,16 @@
 (setq vterm-shell "/usr/bin/zsh")
 
 ;; docview settings
-(setq! '(doc-view-continuous t))
+(setq! doc-view-continuous t)
 
 ;; org-journal settings
-(setq org-journal-dir "~/org/journal/"
-      org-journal-date-format "%A, %d %B %Y"
-      org-journal-enable-agenda-integration t
-      org-journal-enable-encryption t
-      org-journal-encrypt-journal t)
+(after! org-journal
+  (setq org-journal-dir "~/org/journal/"
+        org-journal-date-format "%A, %d %B %Y"
+        org-journal-enable-agenda-integration t
+        org-journal-enable-encryption t
+        org-journal-encrypt-journal t))
+
+;; lsp-java settings
+(setq lsp-java-autobuild-enabled t
+      lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
