@@ -44,7 +44,7 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 ;; set the default org archive location
-(setq org-archive-location "~/org/archive/todo_archive.org::* From %s")
+(setq org-archive-location "~/org/archive/todo_archive.org::datetree/* From %s")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -178,3 +178,9 @@
 ;; lsp-java settings
 (setq lsp-java-autobuild-enabled t
       lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
+
+;; doom modeline settings
+(setq doom-modeline-buffer-file-name-style 'truncate-all ; truncate all dirs to file
+      doom-modeline-major-mode-icon t                    ; show an icon for filetype
+      doom-modeline-continuous-word-count-modes          ; show word count all the time
+        '(markdown-mode gfm-mode org-mode))
