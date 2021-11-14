@@ -36,9 +36,9 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-molokai)
-(setq! doom-molokai-brighter-comments t)
-(setq! doom-molokai-brighter-modeline t)
+(setq doom-theme 'doom-gruvbox)
+(setq! doom-gruvbox-brighter-comments t)
+(setq! doom-gruvbox-dark-variant "hard")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -182,5 +182,27 @@
 ;; doom modeline settings
 (setq doom-modeline-buffer-file-name-style 'truncate-all ; truncate all dirs to file
       doom-modeline-major-mode-icon t                    ; show an icon for filetype
-      doom-modeline-continuous-word-count-modes          ; show word count all the time
-        '(markdown-mode gfm-mode org-mode))
+      doom-modeline-enable-word-count t                  ; enable word count on selections
+      doom-modeline-continuous-word-count-modes          ; show word count all the time for these modes
+      '(markdown-mode gfm-mode org-mode))
+
+;; org settings
+(after! org
+  (setq org-ellipsis " ▼ "
+        org-log-done 'time
+        org-hide-emphasis-markers t
+        ;; TODO look into changing keywords later
+        ;; org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+        ;;   '((sequence
+        ;;      "TODO(t)"           ; A task that is ready to be tackled
+        ;;      "BLOG(b)"           ; Blog writing assignments
+        ;;      "GYM(g)"            ; Things to accomplish at the gym
+        ;;      "PROJ(p)"           ; A project that contains other tasks
+        ;;      "VIDEO(v)"          ; Video assignments
+        ;;      "WAIT(w)"           ; Something is holding up this task
+        ;;      "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+        ;;      "DONE(d)"           ; Task has been completed
+        ;;      "CANCELLED(c)" )))  ; Task has been cancelled
+        ;;         ((sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
+        ;;         (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
+))
