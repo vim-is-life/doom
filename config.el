@@ -118,7 +118,7 @@
         (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
       bibtex-completion-pdf-open-function
       (lambda (fpath)
-	(call-process "open" nil 0 nil fpath)))
+        (call-process "open" nil 0 nil fpath)))
 (setq bibtex-dialect 'biblatex)
 (setq org-latex-pdf-process '("latexmk -f -shell-escape -bibtex -pdfxe %f"))
 ;; easier calling of org ref
@@ -180,7 +180,7 @@
       lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
 
 ;; doom modeline settings
-(setq doom-modeline-buffer-file-name-style 'truncate-all ; truncate all dirs to file
+(setq doom-modeline-buffer-file-name-style 'buffer-name  ; only show unique buffer names
       doom-modeline-major-mode-icon t                    ; show an icon for filetype
       doom-modeline-enable-word-count t                  ; enable word count on selections
       doom-modeline-continuous-word-count-modes          ; show word count all the time for these modes
@@ -206,3 +206,18 @@
         ;;         ((sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
         ;;         (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
 ))
+
+;; make sure emacsclient won't open to scratch
+(setq doom-fallback-buffer "*dashboard*")
+
+;; unicode
+(after! unicode-fonts
+  (setq doom-unicode-font (font-spec :family "Fira Mono"))      ; first font checked for unicode coverage
+  (dolist (unicode-block '("Mathematical Alphanumeric Symbols"
+                           "Mathematical Operators"
+                           "Miscellaneous Mathematical Symbols-A"
+                           "Miscellaneous Mathematical Symbols-B"
+                           "Miscellaneous Symbols"
+                           "Miscellaneous Symbols and Arrows"
+                           "Miscellaneous Symbols and Pictographs"))
+      (push "DejaVu Math TeX Gyre" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))

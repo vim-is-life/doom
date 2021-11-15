@@ -58,7 +58,7 @@
        (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
+       multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -69,7 +69,8 @@
        (dired +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        (ibuffer +icons)         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo              ; persistent, smarter undo for your inevitable mistakes
+        +tree)            ; branching undo hist
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -110,7 +111,7 @@
 
        :os
        ;; (:if IS-MAC macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -162,8 +163,8 @@
         +pandoc          ; the swiss army chainsaw converter
         +pomodoro        ; productivity!
         +present         ; show off your org mode
-        +pretty )         ; make org mode easier on the eyes
-        ;; +roam2          ; knowledge base with org mode
+        +pretty          ; make org mode easier on the eyes
+        +roam2)          ; knowledge base with org mode
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
