@@ -69,8 +69,8 @@
        (dired +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        (ibuffer +icons)         ; interactive buffer management
-       (undo              ; persistent, smarter undo for your inevitable mistakes
-        +tree)            ; branching undo hist
+       (undo)              ; persistent, smarter undo for your inevitable mistakes
+        ;; +tree)            ; branching undo hist
        vc                ; version-control and Emacs, sitting in a tree
 
        :term

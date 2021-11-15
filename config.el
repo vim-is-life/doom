@@ -221,3 +221,10 @@
                            "Miscellaneous Symbols and Arrows"
                            "Miscellaneous Symbols and Pictographs"))
       (push "DejaVu Math TeX Gyre" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
+;; org roam
+(after! org
+  (setq org-roam-directory (concat org-directory "org-roam")))
+
+;; ;; undo tree
+;; (add-hook ’evil-local-mode-hook ’turn-on-undo-tree-mode)
