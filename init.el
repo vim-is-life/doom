@@ -63,10 +63,12 @@
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
-       ;;word-wrap         ; soft wrapping with language-aware indent
+       word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired +icons)             ; making dired pretty [functional]
+       (dired              ; making dired pretty [functional]
+        +ranger            ; ranger like look (and functionality?)
+        +icons)            ; pretty dired
        electric          ; smarter, keyword-based electric-indent
        (ibuffer +icons)         ; interactive buffer management
        (undo)              ; persistent, smarter undo for your inevitable mistakes
