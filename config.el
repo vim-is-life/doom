@@ -228,3 +228,6 @@
 
 ;; ;; undo tree
 ;; (add-hook ’evil-local-mode-hook ’turn-on-undo-tree-mode)
+
+;; ranger.el
+(setq ranger-override-dired-mode t)
