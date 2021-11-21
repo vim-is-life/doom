@@ -66,4 +66,5 @@
 
 ;; rref in calc mode
 (package! calc-rref
-  :recipe )
+  :recipe (:host github :repo "oantolin/emacs-config"
+           :files ("my-lisp/calc-rref.el")))

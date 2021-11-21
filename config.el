@@ -249,3 +249,10 @@
 
 ;; tramp settings
 (setq! tramp-adb-connect-if-not-connected t)
+
+;; calc settings
+(setq calc-prefer-frac t
+      calc-symbolic-mode t
+      calc-internal-prec 50)
+(after! calc-mode
+  (require 'calc-rref))
