@@ -36,9 +36,16 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-gruvbox)
-(setq! doom-gruvbox-brighter-comments t)
-(setq! doom-gruvbox-dark-variant "hard")
+
+;; (setq doom-theme 'doom-gruvbox)
+;; (setq! doom-gruvbox-brighter-comments t)
+;; (setq! doom-gruvbox-dark-variant "hard")
+
+;; (setq doom-theme 'doom-outrun-electric)
+;; (setq! doom-outrun-electric-brighter-comments t)
+;; (setq! doom-outrun-electric-comment-bg t)
+
+(setq doom-theme 'doom-homage-black)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -189,6 +196,7 @@
 ;; org settings
 (after! org
   (setq org-ellipsis " ▼ "
+        org-image-actual-width 500
         org-log-done 'time
         org-hide-emphasis-markers t
         ;; TODO look into changing keywords later
@@ -230,4 +238,14 @@
 ;; (add-hook ’evil-local-mode-hook ’turn-on-undo-tree-mode)
 
 ;; ranger.el
-(setq ranger-override-dired-mode t)
+;; (setq! ranger-override-dired-mode t)
+;; (setq
+;;  ;; ranger-cleanup-on-disable t       ; get rid of extra ranger buffers after closing
+;;  ;;      ranger-cleanup-eagerly t          ; get rid of extra ranger buffers after moving to new dir
+;;       ;; exclusions
+;;       ranger-max-preview-size 10)        ; don't preview anything greater than 10 MB
+;; (push "srt" ranger-excluded-extensions)
+;; (push "pdf" ranger-excluded-extensions)
+
+;; tramp settings
+(setq! tramp-adb-connect-if-not-connected t)

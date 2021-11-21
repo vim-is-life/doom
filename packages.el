@@ -54,9 +54,16 @@
 (package! ob-mermaid)
 
 ;; groff export
-;; (package! ox-groff)
+;; (package! ox-groff
+;;   :recipe (:host github :repo "yyr/org-mode"
+;;            :files ("contrib/list/ox-groff.el")))
+;; commented out because i get weird errors i don't yet know how to deal with
 
 ;; citations
 (package! zotxt)        ; zotero integration
 (package! org-ref)      ; citations, cross-references, and more
 (package! ivy-bibtex)   ; insert citations with org mode/org-ref
+
+;; rref in calc mode
+(package! calc-rref
+  :recipe )

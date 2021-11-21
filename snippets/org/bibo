@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: insert org-ref bibliography link
+# uuid: bibo
+# key: bibo
+# condition: t
+# --
+
+[[bibliography:~/Documents/all-refs.bib]]
