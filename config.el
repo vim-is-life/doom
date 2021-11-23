@@ -37,15 +37,18 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
 
-;; (setq doom-theme 'doom-gruvbox)
-;; (setq! doom-gruvbox-brighter-comments t)
-;; (setq! doom-gruvbox-dark-variant "hard")
+(setq doom-theme 'doom-gruvbox)
+(setq! doom-gruvbox-brighter-comments t)
+(setq! doom-gruvbox-dark-variant "hard")
 
 ;; (setq doom-theme 'doom-outrun-electric)
 ;; (setq! doom-outrun-electric-brighter-comments t)
 ;; (setq! doom-outrun-electric-comment-bg t)
 
-(setq doom-theme 'doom-homage-black)
+;; (setq doom-theme 'doom-homage-black)
+
+;; (setq doom-theme 'doom-challenger-deep)
+;; (setq! doom-challenger-deep-brighter-comments t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -143,13 +146,13 @@
 
 
 (set-email-account! "school-gmail"
-  '((mu4e-sent-folder       . "/school-gmail/[Gmail].Sent Mail")
+  '((mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
     ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
-    ;; (mu4e-trash-folder      . "/school-gmail/Trash")
-    (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
+    (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
+    ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
     (smtpmail-smtp-user     . "dmccullough@imsa.edu")
     (user-mail-address      . "dmccullough@imsa.edu")    ;; only needed for mu < 1.4
-    (mu4e-compose-signature . "\nDaunovan McCullough"))
+    (mu4e-compose-signature . "\n\nDaunovan McCullough"))
   t)
 
 (setq mu4e-context-policy 'ask-if-none
@@ -159,7 +162,9 @@
 (setq mu4e-index-cleanup nil
       ;; because gmail uses labels as folders we can use lazy check since
       ;; messages don't really "move"
-      mu4e-index-lazy-check t)
+      mu4e-index-lazy-check t
+      ;; get emails every 5 mins
+      mu4e-update-interval 300)
 
 ;; fix "No such file or directory, mu4e"
 ;; if you installed it using your package manager
@@ -256,3 +261,30 @@
       calc-internal-prec 50)
 (after! calc-mode
   (require 'calc-rref))
+
+;; translate mode settings
+(after! org
+  (require 'google-translate-mode))
+
+;; winner mode
+(map! :leader
+      (:prefix ("w" . "window")
+       :desc "Winner redo" "<right>" #'winner-redo
+       :desc "Winner undo" "<left>" #'winner-undo))
+
+;; emms
+(emms-all)
+(emms-default-players)
+(emms-mode-line 1)
+(emms-playing-time 1)
+(setq emms-source-file-default-directory "/media/shark/Elements/Multimedia/Music/"
+      emms-playlist-buffer-name "*Music*"
+      emms-info-asynchronously t
+      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+(map! :leader
+      (:prefix ("A" . "EMMS audio player")
+       :desc "Go to emms playlist" "a" #'emms-playlist-mode-go
+       :desc "Emms pause track" "x" #'emms-pause
+       :desc "Emms stop track" "s" #'emms-stop
+       :desc "Emms play previous track" "p" #'emms-previous
+       :desc "Emms play next track" "n" #'emms-next))
