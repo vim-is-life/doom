@@ -83,7 +83,10 @@
 
        :checkers
        (syntax +childframe)          ; tasing you for every semicolon you forget
-       (spell +everywhere +flyspell) ; tasing you for misspelling mispelling
+       (spell                        ; tasing you for misspelling mispelling
+        +aspell
+        +everywhere
+        +flyspell)
        grammar           ; tasing grammar mistake every you make
 
        :tools
