@@ -41,11 +41,11 @@
 ;; (setq! doom-gruvbox-brighter-comments t)
 ;; (setq! doom-gruvbox-dark-variant "hard")
 
-;; (setq doom-theme 'doom-outrun-electric)
-;; (setq! doom-outrun-electric-brighter-comments t)
-;; (setq! doom-outrun-electric-comment-bg t)
+(setq doom-theme 'doom-outrun-electric)
+(setq! doom-outrun-electric-brighter-comments t)
+(setq! doom-outrun-electric-comment-bg t)
 
-(setq doom-theme 'doom-homage-black)
+;; (setq doom-theme 'doom-homage-black)
 
 ;; (setq doom-theme 'doom-challenger-deep)
 ;; (setq! doom-challenger-deep-brighter-comments t)
