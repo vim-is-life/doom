@@ -37,15 +37,15 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
 
-(setq doom-theme 'doom-gruvbox)
-(setq! doom-gruvbox-brighter-comments t)
-(setq! doom-gruvbox-dark-variant "hard")
+;; (setq doom-theme 'doom-gruvbox)
+;; (setq! doom-gruvbox-brighter-comments t)
+;; (setq! doom-gruvbox-dark-variant "hard")
 
 ;; (setq doom-theme 'doom-outrun-electric)
 ;; (setq! doom-outrun-electric-brighter-comments t)
 ;; (setq! doom-outrun-electric-comment-bg t)
 
-;; (setq doom-theme 'doom-homage-black)
+(setq doom-theme 'doom-homage-black)
 
 ;; (setq doom-theme 'doom-challenger-deep)
 ;; (setq! doom-challenger-deep-brighter-comments t)
@@ -147,7 +147,7 @@
 
 (set-email-account! "school-gmail"
   '((mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
-    ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
+    (mu4e-drafts-folder     . "/school-gmail/Drafts")
     (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
     ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
     (smtpmail-smtp-user     . "dmccullough@imsa.edu")
@@ -282,9 +282,13 @@
       emms-info-asynchronously t
       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
 (map! :leader
-      (:prefix ("A" . "EMMS audio player")
+      (:prefix ("e" . "EMMS audio player")
        :desc "Go to emms playlist" "a" #'emms-playlist-mode-go
        :desc "Emms pause track" "x" #'emms-pause
        :desc "Emms stop track" "s" #'emms-stop
        :desc "Emms play previous track" "p" #'emms-previous
-       :desc "Emms play next track" "n" #'emms-next))
+       :desc "Emms play next track" "n" #'emms-next
+       :desc "Emms play file" "o" #'emms-play-file))
+
+;; ox-reveal settings
+(setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")

@@ -23,7 +23,7 @@
        company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ;;ivy               ; a search engine for love and life
+       ;; ivy               ; a search engine for love and life
        (vertico +icons)           ; the search engine of the future
 
        :ui
@@ -142,7 +142,9 @@
        ;; hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
-       (java +meghanada)       ; the poster child for carpal tunnel syndrome
+       (java        ; the poster child for carpal tunnel syndrome
+        ;; +meghanada)
+        +lsp)
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        (julia +lsp)             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
@@ -198,7 +200,7 @@
 
        :app
        ;; calendar
-       ;; emms
+       emms
        everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
        (rss +org)        ; emacs as an RSS reader
