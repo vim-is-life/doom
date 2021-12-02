@@ -53,6 +53,8 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+;; set the location of the agenda files
+(setq! org-agenda-files (list "~/org/") )
 ;; set the default org archive location
 (setq org-archive-location "~/org/archive/todo_archive.org::datetree/* From %s")
 
