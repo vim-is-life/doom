@@ -41,11 +41,11 @@
 ;; (setq! doom-gruvbox-brighter-comments t)
 ;; (setq! doom-gruvbox-dark-variant "hard")
 
-(setq doom-theme 'doom-outrun-electric)
-(setq! doom-outrun-electric-brighter-comments t)
-(setq! doom-outrun-electric-comment-bg t)
+;; (setq doom-theme 'doom-outrun-electric)
+;; (setq! doom-outrun-electric-brighter-comments t)
+;; (setq! doom-outrun-electric-comment-bg t)
 
-;; (setq doom-theme 'doom-homage-black)
+(setq doom-theme 'doom-homage-black)
 
 ;; (setq doom-theme 'doom-challenger-deep)
 ;; (setq! doom-challenger-deep-brighter-comments t)
@@ -54,7 +54,7 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 ;; set the location of the agenda files
-(setq! org-agenda-files (list "~/org/") )
+(setq org-agenda-files (list "~/org/") )
 ;; set the default org archive location
 (setq org-archive-location "~/org/archive/todo_archive.org::datetree/* From %s")
 
@@ -88,7 +88,8 @@
 (add-hook 'find-file-hook 'no-junk-please-were-unixish) ;; call the function defined earlier i believe this is doing
 
 
-(setq ob-mermaid-cli-path "~/.local/bin/node_modules/.bin/mmdc")
+;; (setq ob-mermaid-cli-path "~/.local/bin/node_modules/.bin/mmdc")
+(setq ob-mermaid-cli-path nil)
 (setq ispell-program-name "aspell")
 (setq lsp-tex-server 'texlab)   ; latex lsp
 
@@ -294,3 +295,12 @@
 
 ;; ox-reveal settings
 (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+
+;; org-pomodoro settings
+(setq! org-pomodoro-length 30)
+
+;; formatting settings
+(setq +format-on-save-enabled-modes '(not emacs-lisp-mode
+                                         sql-mode tex-mode
+                                         latex-mode org-msg-edit-mode
+                                         java-mode))
