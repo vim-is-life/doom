@@ -50,11 +50,12 @@
 ;; (setq doom-theme 'doom-challenger-deep)
 ;; (setq! doom-challenger-deep-brighter-comments t)
 
+;; (setq doom-theme 'doom-solarized-dark-high-contrast)
+;; (setq! doom-solarized-dark-high-contrast-brighter-comments t)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-;; set the location of the agenda files
-(setq org-agenda-files (list "~/org/") )
 ;; set the default org archive location
 (setq org-archive-location "~/org/archive/todo_archive.org::datetree/* From %s")
 
@@ -133,7 +134,9 @@
       (lambda (fpath)
         (call-process "open" nil 0 nil fpath)))
 (setq bibtex-dialect 'biblatex)
-(setq org-latex-pdf-process '("latexmk -f -shell-escape -bibtex -pdfxe %f"))
+;; (setq org-latex-pdf-process '("latexmk -f -shell-escape -bibtex -pdfxe %f"))
+(setq org-latex-pdf-process
+      '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
 ;; easier calling of org ref
 (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link-hydra)
 
@@ -149,9 +152,9 @@
 
 
 (set-email-account! "school-gmail"
-  '((mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
-    (mu4e-drafts-folder     . "/school-gmail/Drafts")
-    (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
+  '(;(mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
+    ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
+    ;; (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
     ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
     (smtpmail-smtp-user     . "dmccullough@imsa.edu")
     (user-mail-address      . "dmccullough@imsa.edu")    ;; only needed for mu < 1.4
@@ -207,6 +210,8 @@
         org-image-actual-width 500
         org-log-done 'time
         org-hide-emphasis-markers t
+        ;; set the location of the agenda files
+        ;; org-agenda-files (list "~/org/")
         ;; TODO look into changing keywords later
         ;; org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
         ;;   '((sequence
@@ -278,9 +283,9 @@
 ;; emms
 (emms-all)
 (emms-default-players)
-(emms-mode-line 1)
-(emms-playing-time 1)
-(setq emms-source-file-default-directory "/media/shark/Elements/Multimedia/Music/"
+;; (emms-mode-line 1)
+;; (emms-playing-time 1)
+(setq emms-source-file-default-directory "/run/media/shark/Elements/Multimedia/Music/"
       emms-playlist-buffer-name "*Music*"
       emms-info-asynchronously t
       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
@@ -297,10 +302,27 @@
 (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
 
 ;; org-pomodoro settings
-(setq! org-pomodoro-length 30)
+;; (setq! org-pomodoro-length 30)
+(setq! org-pomodoro-length 25)
 
 ;; formatting settings
 (setq +format-on-save-enabled-modes '(not emacs-lisp-mode
                                          sql-mode tex-mode
                                          latex-mode org-msg-edit-mode
                                          java-mode))
+
+;; dired
+(setq dired-ls-sorting-switches "ASXU")
+
+;; ledger
+(eval-after-load 'ledger-mode
+  (progn
+    ;; FIXME tab does not work to do the thing
+    ;; org-cycle allows completion to work whereas outline-toggle-children does not
+    ;; (define-key ledger-mode-map (kbd "TAB") #'org-cycle)
+    ;; (add-hook 'ledger-mode-hook #'outline-minor-mode)
+    (font-lock-add-keywords 'ledger-mode outline-font-lock-keywords)))
+
+;; pdf-tools
+(setq! pdf-misc-print-program-executable "/usr/bin/lpr")
+(setq! pdf-misc-print-program-args "-E -o print-quality 4")
