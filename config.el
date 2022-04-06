@@ -326,3 +326,11 @@
 ;; pdf-tools
 (setq! pdf-misc-print-program-executable "/usr/bin/lpr")
 (setq! pdf-misc-print-program-args "-E -o print-quality 4")
+
+;; ms-pdf export settings
+(setq org-pandoc-options-for-ms-pdf '((variable . "pointsize:12p")))
+(setq org-pandoc-options-for-ms '((variable . "pointsize:12p")))
+
+;; haskell formatter
+(after!
+  (setq lsp-haskell-formatting-provider "stylish-haskell"))
