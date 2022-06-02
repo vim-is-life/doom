@@ -37,9 +37,11 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
 
-(setq doom-theme 'doom-gruvbox)
-(setq! doom-gruvbox-brighter-comments t)
-(setq! doom-gruvbox-dark-variant "hard")
+(setq doom-theme 'doom-dark+)
+
+;; (setq doom-theme 'doom-gruvbox)
+;; (setq! doom-gruvbox-brighter-comments t)
+;; (setq! doom-gruvbox-dark-variant "hard")
 
 ;; (setq doom-theme 'doom-outrun-electric)
 ;; (setq! doom-outrun-electric-brighter-comments t)
@@ -334,5 +336,5 @@
 (setq org-pandoc-options-for-ms '((variable . "pointsize:12p")))
 
 ;; haskell formatter
-(after! haskell
-  (setq lsp-haskell-formatting-provider "stylish-haskell"))
+; (after! haskell
+;   (setq lsp-haskell-formatting-provider "stylish-haskell"))
