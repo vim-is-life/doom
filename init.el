@@ -111,7 +111,7 @@
        rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
-       tmux              ; an API for interacting with tmux
+       ;; tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -140,8 +140,8 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       ;;(go +lsp)         ; the hipster dialect
-       (haskell +lsp)    ; a language that's lazier than I am
+       ;; (go +lsp)         ; the hipster dialect
+       ;; (haskell +lsp)    ; a language that's lazier than I am
        ;; hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
@@ -149,7 +149,7 @@
         ;; +meghanada)
         +lsp)
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
-       (julia +lsp)             ; a better, faster MATLAB
+       ;; (julia +lsp)             ; a better, faster MATLAB
        ;; kotlin            ; a better, slicker Java(Script)
        (latex            ; writing papers in Emacs has never been so fun
         +latexmk         ; automate latex process
@@ -172,10 +172,11 @@
         +present         ; show off your org mode
         +pretty          ; make org mode easier on the eyes
         +roam2)          ; knowledge base with org mode
-       php               ; perl's insecure younger brother
+       ;; php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python           ; beautiful is better than ugly
+        +pyright
         +lsp  )           ; nicities
         ;; +conda)          ; virtual environment support and stuff
        ;;qt                ; the 'cutest' gui framework ever
