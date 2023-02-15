@@ -313,6 +313,7 @@
 (setq +format-on-save-enabled-modes '(not emacs-lisp-mode
                                          sql-mode tex-mode
                                          latex-mode org-msg-edit-mode
+                                         html-mode web-mode
                                          java-mode))
 
 ;; dired
