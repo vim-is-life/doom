@@ -69,6 +69,11 @@
   :recipe (:host github :repo "oantolin/emacs-config"
            :files ("my-lisp/calc-rref.el")))
 
+;; arduino mode for my microcontrollers class
+(package! arduino-mode
+  :recipe (:host github :repo "bookest/arduino-mode"
+           :files ("arduino-mode.el")))
+
 ;; translate mode
 ; (package! google-translate-mode
 ;   :recipe (:host github :repo "soimort/translate-shell"
