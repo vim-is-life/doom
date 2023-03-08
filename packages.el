@@ -70,6 +70,6 @@
            :files ("my-lisp/calc-rref.el")))
 
 ;; translate mode
-(package! google-translate-mode
-  :recipe (:host github :repo "soimort/translate-shell"
-           :files ("google-translate-mode.el")))
+; (package! google-translate-mode
+;   :recipe (:host github :repo "soimort/translate-shell"
+;            :files ("google-translate-mode.el")))
