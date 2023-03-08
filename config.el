@@ -275,8 +275,8 @@
   (require 'calc-rref))
 
 ;; translate mode settings
-(after! org
-  (require 'google-translate-mode))
+;; (after! org
+;;   (require 'google-translate-mode))
 
 ;; winner mode
 (map! :leader
