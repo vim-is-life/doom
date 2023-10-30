@@ -156,14 +156,14 @@
 
 
 (set-email-account! "school-gmail"
-  '(;(mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
-    ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
-    ;; (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
-    ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
-    (smtpmail-smtp-user     . "dmccullough@imsa.edu")
-    (user-mail-address      . "dmccullough@imsa.edu")    ;; only needed for mu < 1.4
-    (mu4e-compose-signature . "\n\nDaunovan McCullough"))
-  t)
+                    '(;(mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
+                      ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
+                      ;; (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
+                      ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
+                      (smtpmail-smtp-user     . "dmccullough@imsa.edu")
+                      (user-mail-address      . "dmccullough@imsa.edu")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "\n\nDaunovan McCullough"))
+                    t)
 
 (setq mu4e-context-policy 'ask-if-none
       mu4e-compose-context-policy 'always-ask)
@@ -230,7 +230,7 @@
         ;;      "CANCELLED(c)" )))  ; Task has been cancelled
         ;;         ((sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
         ;;         (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
-))
+        ))
 
 ;; make sure emacsclient won't open to scratch
 (setq doom-fallback-buffer "*dashboard*")
@@ -245,7 +245,7 @@
                            "Miscellaneous Symbols"
                            "Miscellaneous Symbols and Arrows"
                            "Miscellaneous Symbols and Pictographs"))
-      (push "DejaVu Math TeX Gyre" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+    (push "DejaVu Math TeX Gyre" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
 
 ;; org roam
 (after! org
@@ -311,10 +311,10 @@
 
 ;; formatting settings
 (setq +format-on-save-enabled-modes '(not emacs-lisp-mode
-                                         sql-mode tex-mode
-                                         latex-mode org-msg-edit-mode
-                                         html-mode web-mode
-                                         java-mode))
+                                      sql-mode tex-mode
+                                      latex-mode org-msg-edit-mode
+                                      html-mode web-mode
+                                      java-mode))
 
 ;; dired
 (setq dired-ls-sorting-switches "ASXU")
@@ -328,6 +328,11 @@
     ;; (add-hook 'ledger-mode-hook #'outline-minor-mode)
     (font-lock-add-keywords 'ledger-mode outline-font-lock-keywords)))
 
+;; Make C-p go to previous uncleared and C-n go to next uncleared.
+(map! :mode 'ledger-mode
+      (:desc "Previous uncleared trans" :n "C-p" #'ledger-navigate-previous-uncleared
+       :desc "Next uncleared trans" :n "C-n" #'ledger-navigate-next-uncleared))
+
 ;; pdf-tools
 (setq! pdf-misc-print-program-executable "/usr/bin/lpr")
 (setq! pdf-misc-print-program-args "-E -o print-quality 4")
@@ -337,5 +342,33 @@
 (setq org-pandoc-options-for-ms '((variable . "pointsize:12p")))
 
 ;; haskell formatter
-; (after! haskell
-;   (setq lsp-haskell-formatting-provider "stylish-haskell"))
+                                        ; (after! haskell
+                                        ;   (setq lsp-haskell-formatting-provider "stylish-haskell"))
+
+;; stuff for c
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  (set-lsp-priority! 'ccls 2)
+  (set-formatter! 'my-clang-fmt
+    '("clang-format style=\"{BasedOnStyle: llvm, IndentWidth: 4}\""))
+  ) ; optional as ccls is the default in Doom
+
+
+;; for org crypt and encrypting my todos
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance '("crypt"))
+
+(setq org-crypt-key "Daunovan McCullough")
+;; GPG key to use for encryption.
+;; nil means  use symmetric encryption unconditionally.
+;; "" means use symmetric encryption unless heading sets CRYPTKEY property.
+
+;; (setq auto-save-default nil)
+;; Auto-saving does not cooperate with org-crypt.el: so you need to
+;; turn it off if you plan to use org-crypt.el quite often.  Otherwise,
+;; you'll get an (annoying) message each time you start Org.
+
+;; To turn it off only locally, you can insert this:
+;;
+;; # -*- buffer-auto-save-file-name: nil; -*-

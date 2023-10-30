@@ -72,7 +72,7 @@
        electric          ; smarter, keyword-based electric-indent
        (ibuffer +icons)         ; interactive buffer management
        (undo)              ; persistent, smarter undo for your inevitable mistakes
-        ;; +tree)            ; branching undo hist
+       ;; +tree)            ; branching undo hist
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -121,7 +121,7 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       cc                ; C > C++ == 1
+       (cc +lsp)                ; C > C++ == 1
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -178,14 +178,14 @@
        (python           ; beautiful is better than ugly
         +pyright
         +lsp  )           ; nicities
-        ;; +conda)          ; virtual environment support and stuff
+       ;; +conda)          ; virtual environment support and stuff
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
        (sh +lsp)         ; she sells {ba,z,fi}sh shells on the C xor
@@ -198,7 +198,7 @@
        ;;zig               ; C, but simpler
 
        :email
-       (mu4e +org +gmail)
+       ;; (mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 
