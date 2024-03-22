@@ -350,7 +350,7 @@
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
   (set-lsp-priority! 'ccls 2)
   (set-formatter! 'my-clang-fmt
-    '("clang-format style=\"{BasedOnStyle: llvm, IndentWidth: 4}\""))
+    '("clang-format --style=\"{BasedOnStyle: llvm, IndentWidth: 4}\""))
   ) ; optional as ccls is the default in Doom
 
 
