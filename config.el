@@ -3,6 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; make sure emacsclient won't open to scratch
+(setq doom-fallback-buffer "*dashboard*")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -22,9 +24,9 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "Source Code Pro" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
-      doom-big-font (font-spec :family "Source Code Pro" :size 24))
+;; (setq doom-font (font-spec :family "Source Code Pro" :size 15)
+;;       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+;;       doom-big-font (font-spec :family "Source Code Pro" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -101,14 +103,15 @@
 (setq org-odt-preferred-output-format "docx")
 
 ;;; org ref stuff
-(require 'org-ref-ivy)
-(setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
-      org-ref-insert-cite-function 'org-ref-cite-insert-ivy
-      org-ref-insert-label-function 'org-ref-insert-label-link
-      org-ref-insert-ref-function 'org-ref-insert-ref-link
-      org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body)))
+(after! org-ref-ivy
+  (setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
+        org-ref-insert-cite-function 'org-ref-cite-insert-ivy
+        org-ref-insert-label-function 'org-ref-insert-label-link
+        org-ref-insert-ref-function 'org-ref-insert-ref-link
+        org-ref-cite-onclick-function (lambda (_)
+                                        (org-ref-citation-hydra/body))))
 
-(require 'org-ref-refproc)
+;; (require 'org-ref-refproc)
 ;; fine tuned export --> html
 ;; (setq ((org-export-before-parsing-hook '(org-ref-cite-natmove ;; do this first
 ;;                                         org-ref-csl-preprocess-buffer
@@ -126,6 +129,7 @@
 ;;   (org-open-file (plist-get (org-pandoc-export-to-docx) 'output-file) 'system))
 
 ;; setting some org ref variables
+(after! org-ref-refproc
 (setq bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
       bibtex-completion-additional-search-fields '(keywords)
       bibtex-completion-display-formats
@@ -134,75 +138,73 @@
         (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
         (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
         (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-      bibtex-completion-pdf-open-function
-      (lambda (fpath)
-        (call-process "open" nil 0 nil fpath)))
+      bibtex-completion-pdf-open-function (lambda (fpath) (call-process "open" nil 0 nil fpath)))
 (setq bibtex-dialect 'biblatex)
-;; (setq org-latex-pdf-process '("latexmk -f -shell-escape -bibtex -pdfxe %f"))
+;;;; (setq org-latex-pdf-process '("latexmk -f -shell-escape -bibtex -pdfxe %f"))
 (setq org-latex-pdf-process
-      '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+      '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
 ;; easier calling of org ref
-(define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link-hydra)
+;; (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link-hydra)
 
 ;; mu4e config
-(after! mu4e
-  (setq sendmail-program (executable-find "msmtp")
-        send-mail-function #'smtpmail-send-it
-        message-sendmail-f-is-evil t
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail
-        mu4e-maildir       "~/Maildir"))   ;; top-level Maildir
+;; (after! mu4e
+;;   (setq sendmail-program (executable-find "msmtp")
+;;         send-mail-function #'smtpmail-send-it
+;;         message-sendmail-f-is-evil t
+;;         message-sendmail-extra-arguments '("--read-envelope-from")
+;;         message-send-mail-function #'message-send-mail-with-sendmail
+;;         mu4e-maildir       "~/Maildir"))   ;; top-level Maildir
 
 
 
-(set-email-account! "school-gmail"
-                    '(;(mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
-                      ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
-                      ;; (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
-                      ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
-                      (smtpmail-smtp-user     . "dmccullough@imsa.edu")
-                      (user-mail-address      . "dmccullough@imsa.edu")    ;; only needed for mu < 1.4
-                      (mu4e-compose-signature . "\n\nDaunovan McCullough"))
-                    t)
+;; (set-email-account! "school-gmail"
+;;                     '(;(mu4e-sent-folder       . "/school-gmail/[Gmail]/Sent Mail")
+;;                       ;; (mu4e-drafts-folder     . "/school-gmail/Drafts")
+;;                       ;; (mu4e-trash-folder      . "/school-gmail/[Gmail]/Bin")
+;;                       ;; (mu4e-refile-folder     . "/school-gmail/[Gmail].All Mail")
+;;                       (smtpmail-smtp-user     . "dmccullough@imsa.edu")
+;;                       (user-mail-address      . "dmccullough@imsa.edu")    ;; only needed for mu < 1.4
+;;                       (mu4e-compose-signature . "\n\nDaunovan McCullough"))
+;;                     t)
 
-(setq mu4e-context-policy 'ask-if-none
-      mu4e-compose-context-policy 'always-ask)
+;; (setq mu4e-context-policy 'ask-if-none
+;;       mu4e-compose-context-policy 'always-ask)
 
-;; don't need to run cleanup after indexing for gmail
-(setq mu4e-index-cleanup nil
-      ;; because gmail uses labels as folders we can use lazy check since
-      ;; messages don't really "move"
-      mu4e-index-lazy-check t
-      ;; get emails every 5 mins
-      mu4e-update-interval 300)
+;; ;; don't need to run cleanup after indexing for gmail
+;; (setq mu4e-index-cleanup nil
+;;       ;; because gmail uses labels as folders we can use lazy check since
+;;       ;; messages don't really "move"
+;;       mu4e-index-lazy-check t
+;;       ;; get emails every 5 mins
+;;       mu4e-update-interval 300)
 
 ;; fix "No such file or directory, mu4e"
 ;; if you installed it using your package manager
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 ;; elfeed
 (add-hook! 'elfeed-search-mode-hook 'elfeed-update)
 
 ;; vterm
-(setq vterm-shell "/usr/bin/zsh")
+(setq! vterm-shell "/usr/bin/zsh")
 
 ;; docview settings
 (setq! doc-view-continuous t)
 
 ;; org-journal settings
 (after! org-journal
-  (setq org-journal-dir "~/org/journal/"
+  (setq! org-journal-dir "~/org/journal/"
         org-journal-date-format "%A, %d %B %Y"
         org-journal-enable-agenda-integration t
         org-journal-enable-encryption t
         org-journal-encrypt-journal t))
 
 ;; lsp-java settings
-(setq lsp-java-autobuild-enabled t
+(setq! lsp-java-autobuild-enabled t
       lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
 
 ;; doom modeline settings
-(setq doom-modeline-buffer-file-name-style 'buffer-name  ; only show unique buffer names
+(setq! doom-modeline-buffer-file-name-style 'buffer-name  ; only show unique buffer names
       doom-modeline-major-mode-icon t                    ; show an icon for filetype
       doom-modeline-enable-word-count t                  ; enable word count on selections
       doom-modeline-continuous-word-count-modes          ; show word count all the time for these modes
@@ -210,34 +212,32 @@
 
 ;; org settings
 (after! org
-  (setq org-ellipsis " ▼ "
+  (setq! org-ellipsis " ▼ "
         org-image-actual-width 500
         org-log-done 'time
-        org-hide-emphasis-markers t
-        ;; set the location of the agenda files
-        ;; org-agenda-files (list "~/org/")
-        ;; TODO look into changing keywords later
-        ;; org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
-        ;;   '((sequence
-        ;;      "TODO(t)"           ; A task that is ready to be tackled
-        ;;      "BLOG(b)"           ; Blog writing assignments
-        ;;      "GYM(g)"            ; Things to accomplish at the gym
-        ;;      "PROJ(p)"           ; A project that contains other tasks
-        ;;      "VIDEO(v)"          ; Video assignments
-        ;;      "WAIT(w)"           ; Something is holding up this task
-        ;;      "|"                 ; The pipe necessary to separate "active" states and "inactive" states
-        ;;      "DONE(d)"           ; Task has been completed
-        ;;      "CANCELLED(c)" )))  ; Task has been cancelled
-        ;;         ((sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-        ;;         (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
-        ))
+        org-hide-emphasis-markers t))
+;; set the location of the agenda files
+;; org-agenda-files (list "~/org/")
+;; TODO look into changing keywords later
+;; org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+;;   '((sequence
+;;      "TODO(t)"           ; A task that is ready to be tackled
+;;      "BLOG(b)"           ; Blog writing assignments
+;;      "GYM(g)"            ; Things to accomplish at the gym
+;;      "PROJ(p)"           ; A project that contains other tasks
+;;      "VIDEO(v)"          ; Video assignments
+;;      "WAIT(w)"           ; Something is holding up this task
+;;      "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+;;      "DONE(d)"           ; Task has been completed
+;;      "CANCELLED(c)" )))  ; Task has been cancelled
+;;         ((sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
+;;         (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
 
-;; make sure emacsclient won't open to scratch
-(setq doom-fallback-buffer "*dashboard*")
+
 
 ;; unicode
 (after! unicode-fonts
-  (setq doom-unicode-font (font-spec :family "Fira Mono"))      ; first font checked for unicode coverage
+  (setq! doom-unicode-font (font-spec :family "Fira Mono"))      ; first font checked for unicode coverage
   (dolist (unicode-block '("Mathematical Alphanumeric Symbols"
                            "Mathematical Operators"
                            "Miscellaneous Mathematical Symbols-A"
@@ -249,7 +249,7 @@
 
 ;; org roam
 (after! org
-  (setq org-roam-directory (concat org-directory "org-roam")))
+  (setq! org-roam-directory (concat org-directory "org-roam")))
 
 ;; ;; undo tree
 ;; (add-hook ’evil-local-mode-hook ’turn-on-undo-tree-mode)
@@ -268,11 +268,11 @@
 (setq! tramp-adb-connect-if-not-connected t)
 
 ;; calc settings
-(setq calc-prefer-frac t
+(setq! calc-prefer-frac t
       calc-symbolic-mode t
       calc-internal-prec 50)
-(after! calc-mode
-  (require 'calc-rref))
+                                        ; (after! calc-mode
+                                        ;   (require 'calc-rref))
 
 ;; translate mode settings
 ;; (after! org
@@ -289,7 +289,7 @@
 (emms-default-players)
 ;; (emms-mode-line 1)
 ;; (emms-playing-time 1)
-(setq emms-source-file-default-directory "/run/media/shark/Elements/Multimedia/Music/"
+(setq! emms-source-file-default-directory "/run/media/shark/Elements/Multimedia/Music/"
       emms-playlist-buffer-name "*Music*"
       emms-info-asynchronously t
       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
@@ -303,30 +303,30 @@
        :desc "Emms play file" "o" #'emms-play-file))
 
 ;; ox-reveal settings
-(setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+(setq! org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
 
 ;; org-pomodoro settings
 ;; (setq! org-pomodoro-length 30)
 (setq! org-pomodoro-length 25)
 
 ;; formatting settings
-(setq +format-on-save-enabled-modes '(not emacs-lisp-mode
+(setq! +format-on-save-enabled-modes '(not emacs-lisp-mode
                                       sql-mode tex-mode
                                       latex-mode org-msg-edit-mode
                                       html-mode web-mode
                                       java-mode))
 
 ;; dired
-(setq dired-ls-sorting-switches "ASXU")
+(setq! dired-ls-sorting-switches "ASXU")
 
 ;; ledger
-(eval-after-load 'ledger-mode
-  (progn
-    ;; FIXME tab does not work to do the thing
-    ;; org-cycle allows completion to work whereas outline-toggle-children does not
-    ;; (define-key ledger-mode-map (kbd "TAB") #'org-cycle)
-    ;; (add-hook 'ledger-mode-hook #'outline-minor-mode)
-    (font-lock-add-keywords 'ledger-mode outline-font-lock-keywords)))
+;; (eval-after-load 'ledger-mode
+;;   (progn
+;;     ;; FIXME tab does not work to do the thing
+;;     ;; org-cycle allows completion to work whereas outline-toggle-children does not
+;;     ;; (define-key ledger-mode-map (kbd "TAB") #'org-cycle)
+;;     ;; (add-hook 'ledger-mode-hook #'outline-minor-mode)
+;;     (font-lock-add-keywords 'ledger-mode outline-font-lock-keywords)))
 
 ;; Make C-p go to previous uncleared and C-n go to next uncleared.
 (map! :mode 'ledger-mode
@@ -338,8 +338,8 @@
 (setq! pdf-misc-print-program-args "-E -o print-quality 4")
 
 ;; ms-pdf export settings
-(setq org-pandoc-options-for-ms-pdf '((variable . "pointsize:12p")))
-(setq org-pandoc-options-for-ms '((variable . "pointsize:12p")))
+(setq! org-pandoc-options-for-ms-pdf '((variable . "pointsize:12p")))
+(setq! org-pandoc-options-for-ms '((variable . "pointsize:12p")))
 
 ;; haskell formatter
                                         ; (after! haskell
@@ -347,19 +347,19 @@
 
 ;; stuff for c
 (after! ccls
-  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  (setq! ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
   (set-lsp-priority! 'ccls 2)
   (set-formatter! 'my-clang-fmt
-    '("clang-format --style=\"{BasedOnStyle: llvm, IndentWidth: 4}\""))
-  ) ; optional as ccls is the default in Doom
+    '("clang-format --style=\"{BasedOnStyle: llvm, IndentWidth: 4}\"")))
+                                        ; optional as ccls is the default in Doom
 
 
 ;; for org crypt and encrypting my todos
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance '("crypt"))
-
-(setq org-crypt-key "Daunovan McCullough")
+;; (require 'org-crypt)
+(after! org-crypt
+  (org-crypt-use-before-save-magic)
+  (setq! org-tags-exclude-from-inheritance '("crypt"))
+  (setq! org-crypt-key "Daunovan McCullough"))
 ;; GPG key to use for encryption.
 ;; nil means  use symmetric encryption unconditionally.
 ;; "" means use symmetric encryption unless heading sets CRYPTKEY property.
