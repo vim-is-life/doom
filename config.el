@@ -372,3 +372,22 @@
 ;; To turn it off only locally, you can insert this:
 ;;
 ;; # -*- buffer-auto-save-file-name: nil; -*-
+
+;; 2024-08-19 howm notetaking system config
+(use-package! howm
+  :mode ("_howm\\.org\\'" . howm-mode)
+  :config (setq!
+           howm-file-ext "_howm.org"
+           howm-directory "~/howm/"
+           howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
+           howm-history-file (expand-file-name ".howm-history" howm-directory)
+           howm-file-name-format (concat "%Y/%m/%Y-%m-%d-%H%M%S"
+                                         howm-file-ext)
+           ;; look at enabling these if howm gets slow.
+           ;; see page 70 on tutorial
+           ;; howm-view-use-grep t                         ; use external grep
+           ;; howm-menu-refresh-after-save nil
+           ;; howm-menu-expiry-hours 1                     ; cache menu for n hours
+           ;; howm-menu-file "000-00-00-000000.txt"        ; don't *search*
+
+           ))
