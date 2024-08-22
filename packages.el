@@ -76,6 +76,9 @@
 ;; 2024-08-19 for note taking
 (package! howm)
 
+;; 2024-08-20 for ulisp work
+(package! ulisp-repl)
+
 ;; translate mode
 ;;(package! google-translate-mode
 ;;  :recipe (:host github :repo "soimort/translate-shell"

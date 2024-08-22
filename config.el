@@ -130,19 +130,19 @@
 
 ;; setting some org ref variables
 (after! org-ref-refproc
-(setq bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
-      bibtex-completion-additional-search-fields '(keywords)
-      bibtex-completion-display-formats
-      '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-        (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-        (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-        (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-        (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-      bibtex-completion-pdf-open-function (lambda (fpath) (call-process "open" nil 0 nil fpath)))
-(setq bibtex-dialect 'biblatex)
+  (setq bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
+        bibtex-completion-additional-search-fields '(keywords)
+        bibtex-completion-display-formats
+        '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+        bibtex-completion-pdf-open-function (lambda (fpath) (call-process "open" nil 0 nil fpath)))
+  (setq bibtex-dialect 'biblatex)
 ;;;; (setq org-latex-pdf-process '("latexmk -f -shell-escape -bibtex -pdfxe %f"))
-(setq org-latex-pdf-process
-      '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+  (setq org-latex-pdf-process
+        '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
 ;; easier calling of org ref
 ;; (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link-hydra)
 
@@ -194,28 +194,28 @@
 ;; org-journal settings
 (after! org-journal
   (setq! org-journal-dir "~/org/journal/"
-        org-journal-date-format "%A, %d %B %Y"
-        org-journal-enable-agenda-integration t
-        org-journal-enable-encryption t
-        org-journal-encrypt-journal t))
+         org-journal-date-format "%A, %d %B %Y"
+         org-journal-enable-agenda-integration t
+         org-journal-enable-encryption t
+         org-journal-encrypt-journal t))
 
 ;; lsp-java settings
 (setq! lsp-java-autobuild-enabled t
-      lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
+       lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
 
 ;; doom modeline settings
 (setq! doom-modeline-buffer-file-name-style 'buffer-name  ; only show unique buffer names
-      doom-modeline-major-mode-icon t                    ; show an icon for filetype
-      doom-modeline-enable-word-count t                  ; enable word count on selections
-      doom-modeline-continuous-word-count-modes          ; show word count all the time for these modes
-      '(markdown-mode gfm-mode org-mode))
+       doom-modeline-major-mode-icon t                    ; show an icon for filetype
+       doom-modeline-enable-word-count t                  ; enable word count on selections
+       doom-modeline-continuous-word-count-modes          ; show word count all the time for these modes
+       '(markdown-mode gfm-mode org-mode))
 
 ;; org settings
 (after! org
   (setq! org-ellipsis " ▼ "
-        org-image-actual-width 500
-        org-log-done 'time
-        org-hide-emphasis-markers t))
+         org-image-actual-width 500
+         org-log-done 'time
+         org-hide-emphasis-markers t))
 ;; set the location of the agenda files
 ;; org-agenda-files (list "~/org/")
 ;; TODO look into changing keywords later
@@ -269,8 +269,8 @@
 
 ;; calc settings
 (setq! calc-prefer-frac t
-      calc-symbolic-mode t
-      calc-internal-prec 50)
+       calc-symbolic-mode t
+       calc-internal-prec 50)
                                         ; (after! calc-mode
                                         ;   (require 'calc-rref))
 
@@ -290,9 +290,9 @@
 ;; (emms-mode-line 1)
 ;; (emms-playing-time 1)
 (setq! emms-source-file-default-directory "/run/media/shark/Elements/Multimedia/Music/"
-      emms-playlist-buffer-name "*Music*"
-      emms-info-asynchronously t
-      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+       emms-playlist-buffer-name "*Music*"
+       emms-info-asynchronously t
+       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
 (map! :leader
       (:prefix ("e" . "EMMS audio player")
        :desc "Go to emms playlist" "a" #'emms-playlist-mode-go
@@ -311,10 +311,10 @@
 
 ;; formatting settings
 (setq! +format-on-save-enabled-modes '(not emacs-lisp-mode
-                                      sql-mode tex-mode
-                                      latex-mode org-msg-edit-mode
-                                      html-mode web-mode
-                                      java-mode))
+                                       sql-mode tex-mode
+                                       latex-mode org-msg-edit-mode
+                                       html-mode web-mode
+                                       java-mode))
 
 ;; dired
 (setq! dired-ls-sorting-switches "ASXU")
@@ -375,19 +375,21 @@
 
 ;; 2024-08-19 howm notetaking system config
 (use-package! howm
-  :mode ("_howm\\.org\\'" . howm-mode)
-  :config (setq!
-           howm-file-ext "_howm.org"
-           howm-directory "~/howm/"
-           howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
-           howm-history-file (expand-file-name ".howm-history" howm-directory)
-           howm-file-name-format (concat "%Y/%m/%Y-%m-%d-%H%M%S"
-                                         howm-file-ext)
-           ;; look at enabling these if howm gets slow.
-           ;; see page 70 on tutorial
-           ;; howm-view-use-grep t                         ; use external grep
-           ;; howm-menu-refresh-after-save nil
-           ;; howm-menu-expiry-hours 1                     ; cache menu for n hours
-           ;; howm-menu-file "000-00-00-000000.txt"        ; don't *search*
+  ;; :mode ("_howm\\.org\\'" . howm-mode)
+  :config (progn
+            (setq!
+             howm-file-ext "_howm.org"
+             howm-directory "~/howm/"
+             howm-keyword-file (expand-file-name ".howm-keys" howm-directory)
+             howm-history-file (expand-file-name ".howm-history" howm-directory)
+             howm-file-name-format (concat "%Y/%m/%Y-%m-%d-%H%M%S"
+                                           howm-file-ext)
+             ;; look at enabling these if howm gets slow.
+             ;; see page 70 on tutorial
+             ;; howm-view-use-grep t                         ; use external grep
+             ;; howm-menu-refresh-after-save nil
+             ;; howm-menu-expiry-hours 1                     ; cache menu for n hours
+             ;; howm-menu-file "000-00-00-000000.txt"        ; don't *search*
 
-           ))
+             )
+            (add-hook 'org-mode-hook 'howm-mode)))
